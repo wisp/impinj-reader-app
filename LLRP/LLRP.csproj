@@ -1,0 +1,87 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C0436C6-1226-4B5C-BE7D-8AC69AEB66FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LLRP</RootNamespace>
+    <AssemblyName>LLRP</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommunicationInterface.cs" />
+    <Compile Include="CustomParameter.cs" />
+    <Compile Include="LLRPDataType.cs" />
+    <Compile Include="LLRPEndPoint.cs" />
+    <Compile Include="LLRPEnum.cs" />
+    <Compile Include="LLRPHelper.cs" />
+    <Compile Include="LLRPMsg.cs" />
+    <Compile Include="LLRPParam.cs" />
+    <Compile Include="LLRPClient.cs" />
+    <Compile Include="LLRPUtil.cs" />
+    <Compile Include="LLRPXmlParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Tag.cs" />
+    <Compile Include="TCPIPConnection.cs" />
+    <Compile Include="Timer.cs" />
+    <Compile Include="Transaction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LLRPClient.xslt" />
+    <Content Include="LLRPEndPoint.xslt" />
+    <Content Include="LLRPEnum.xslt" />
+    <Content Include="LLRPMsg.xslt" />
+    <Content Include="LLRPParam.xslt" />
+    <Content Include="LLRPXmlParser.xslt" />
+    <Content Include="templates.xslt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="CodeGenerator.LLRPCodeGenerator" AssemblyFile="CodeGenerator.dll" />
+  <Target Name="BeforeBuild">
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPParam.xslt" OUTPUT_CS_FILE="LLRPParam.cs" Condition="!Exists('LLRPParam.cs')" />
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPMsg.xslt" OUTPUT_CS_FILE="LLRPMsg.cs" Condition="!Exists('LLRPMsg.cs')" />
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPXmlParser.xslt" OUTPUT_CS_FILE="LLRPXmlParser.cs" Condition="!Exists('LLRPXmlParser.cs')" />
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPEnum.xslt" OUTPUT_CS_FILE="LLRPEnum.cs" Condition="!Exists('LLRPEnum.cs')" />
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPEndPoint.xslt" OUTPUT_CS_FILE="LLRPEndPoint.cs" Condition="!Exists('LLRPEndPoint.cs')" />
+    <CodeGenerator.LLRPCodeGenerator LLRP_XML_FILE="llrp-1x0-def.xml" XSLT_FILE="LLRPClient.xslt" OUTPUT_CS_FILE="LLRPClient.cs" Condition="!Exists('LLRPClient.cs')" />
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
