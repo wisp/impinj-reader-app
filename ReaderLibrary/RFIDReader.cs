@@ -59,7 +59,7 @@ namespace ReaderLibrary
     public class RFIDReader
     {
 
-        // Create an instance of LLRP client client.
+        // Create an instance of LLRP client:
         private LLRPClient client = new LLRPClient();
 
         // Store reader-capable modulation modes

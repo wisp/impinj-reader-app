@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SaturnDemo.InitGL">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAIAAMAAAAgAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>InitGL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaturnDemo.LoadTexture">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="SaturnDemo.LoadTexture.RGBTRIPLE" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LoadTexture.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="SaturnDemo.LoadTexture.BITMAP" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LoadTexture.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="SaturnDemo.LoadTexture.BITMAPINFOHEADER" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LoadTexture.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="SaturnDemo.LoadTexture.BITMAPINFO" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LoadTexture.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAEAAAAAAgAAAAAAACQAAAA=</HashCode>
+      <FileName>LoadTexture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaturnDemo.Saturn">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAACAhACQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Saturn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaturnDemo.Stage">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="SaturnDemo.Stage.glVertex" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Stage.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="SaturnDemo.Stage.glCoord" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Stage.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAIjIAAACCEAASAoAAGgEgBiAAAIAAAEQRIA4AFIAQA=</HashCode>
+      <FileName>Stage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Saturn.Properties.Resources">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
