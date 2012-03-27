@@ -13,3 +13,8 @@ C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impi
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\LLRP\obj\Release\ResolveAssemblyReference.cache
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\LLRP\obj\Release\LLRP.dll
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\LLRP\obj\Release\LLRP.pdb
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\bin\Release\LLRP.dll
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\bin\Release\LLRP.pdb
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Release\ResolveAssemblyReference.cache
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Release\LLRP.dll
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Release\LLRP.pdb

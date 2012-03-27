@@ -1,0 +1,5 @@
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\bin\Debug\LLRP.dll
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\bin\Debug\LLRP.pdb
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Debug\LLRP.dll
+C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\LLRP\obj\Debug\LLRP.pdb

@@ -105,6 +105,7 @@ using System.Diagnostics;
 using ZedGraph;
 
 using SaturnDemo;
+using MIDI_Control_Demo;
 using ReaderLibrary;
 using Logging;
 //using AttenuatorTest;
@@ -114,16 +115,16 @@ namespace WISPDemo
     public partial class MainFrm : Form, ReaderLibrary.IRFIDGUI
     {
         private SaturnDemo.Saturn saturn;
+        private MIDI_Control_Demo.Midi midi;
         //private RFIDReader reader;
         private ReaderManager readerMgr;
         private TagStats stats;
         private WispHandleTags handleTags;
 
-
         // Keep the default size information so we know by how much to strech
         // the tag list data grid view
-        private Size formInitialSize;
-        private Size pnlTagListInitialSize;
+        private int formInitialHeight;
+        private int pnlTagListInitialHeight;
 
         private Form setting;
         private Form loggingForm;
@@ -139,8 +140,6 @@ namespace WISPDemo
 
         private void MainFrm_Load(object sender, EventArgs e)
         {
-            // set position of form
-            //base.Location = new Point(800, 150);
 
             // reader is our handle to the physical reader.
             //reader = new RFIDReader(this);
@@ -152,6 +151,9 @@ namespace WISPDemo
             // init the saturn object.
             saturn = new SaturnDemo.Saturn();
 
+            // Init midi config
+            midi = new MIDI_Control_Demo.Midi();
+
             // Setup axis labels for the various graphs.
             InitSOCGraph();
             InitTempGraph();
@@ -159,9 +161,9 @@ namespace WISPDemo
             // Other init code
             InitTagStats();
 
-            // Store initial sizes (for resize operation).
-            //formInitialSize = this.Size;
-            //pnlTagListInitialSize = pnlTagList.Size;
+            // Grab initial component sizes for easy resize
+            formInitialHeight = this.Height;
+            pnlTagListInitialHeight = dgvTagStats.Height;
 
             // Init GUI operational mode to idle (disconnected)
             SetMode(ReaderManager.GuiModes.Idle);
@@ -242,7 +244,19 @@ namespace WISPDemo
             saturn.ModelData(xac, yac, zac);
         }
 
+        private void UpdateMidiGui()
+        {
+            double xac, yac, zac;
+            xac = handleTags.GetCurrentX();
+            yac = handleTags.GetCurrentY();
+            zac = handleTags.GetCurrentZ();
 
+            if (chkFlipX.Checked) xac = 100 - xac;
+            if (chkFlipY.Checked) yac = 100 - yac;
+
+            this.midi.ReOpenMidiConfig();
+            this.midi.updateMidi(xac, yac, zac);
+        }
 
         private void UpdateAccelerometerGUI()
         {
@@ -251,9 +265,7 @@ namespace WISPDemo
 
             GetMaxMinValues();  // accel min max
 
-            // update saturn
-
-
+            // Update saturn
             if (chkSaturn.Checked)
             {
                 UpdateGraphicsOnSaturn();
@@ -263,6 +275,14 @@ namespace WISPDemo
                 this.saturn.DisposeSaturn();
             }
             saturnFrames++;
+
+            // Update MIDI out if checked
+            if (chkMIDI.Checked)
+            {
+                UpdateMidiGui();
+                
+            }
+            
         }
 
 
@@ -547,6 +567,12 @@ namespace WISPDemo
                 chkSaturn.Checked = false;
             }
 
+            // Update MIDI checkbox
+            if (!midi.IsMidiConfigOpen())
+            {
+                chkMIDI.Checked = false;
+            }
+
             //  ***** this is the heart of it ******   //
             // Update the relevant sensor gui sections:
 
@@ -816,16 +842,31 @@ namespace WISPDemo
             loggingForm.Show();
         }
 
-        private void dgvTagStats_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void chkMIDI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMIDI.Checked)
+            {
+                this.midi.ReOpenMidiConfig();
+                UpdateAccelerometerGUI();
+            }
+            else
+            {
+                this.midi.DisposeMidiConfig();
+            }
+        }
+
+        private void MainFrm_ResizeEnd(object sender, EventArgs e)
+        {   
+            // Update height of tag panel when resize occurs
+            dgvTagStats.Height = pnlTagListInitialHeight + (this.Height - formInitialHeight);
+        
+        }
+
+        private void txtIPAddress_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
     }   // end class

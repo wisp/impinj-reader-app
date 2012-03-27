@@ -29,9 +29,9 @@ namespace WISPDemo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.btnInv = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,6 +64,7 @@ namespace WISPDemo
             this.lblYMin = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkMIDI = new System.Windows.Forms.CheckBox();
             this.btnCalAccel = new System.Windows.Forms.Button();
             this.lblTiltZ = new System.Windows.Forms.Label();
             this.lblTiltY = new System.Windows.Forms.Label();
@@ -144,11 +145,11 @@ namespace WISPDemo
             this.chkReadSelected = new System.Windows.Forms.RadioButton();
             this.dgvTagStats = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnLogging = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -171,8 +172,8 @@ namespace WISPDemo
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -246,6 +247,7 @@ namespace WISPDemo
             this.txtIPAddress.Size = new System.Drawing.Size(152, 20);
             this.txtIPAddress.TabIndex = 1;
             this.txtIPAddress.Text = "speedway-00-05-56.local";
+            this.txtIPAddress.TextChanged += new System.EventHandler(this.txtIPAddress_TextChanged);
             // 
             // btnConnect
             // 
@@ -266,7 +268,6 @@ namespace WISPDemo
             this.label1.TabIndex = 25;
             this.label1.Text = "WISP Demo App";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tabControl1
             // 
@@ -495,6 +496,7 @@ namespace WISPDemo
             // 
             // GroupBox3
             // 
+            this.GroupBox3.Controls.Add(this.chkMIDI);
             this.GroupBox3.Controls.Add(this.btnCalAccel);
             this.GroupBox3.Controls.Add(this.lblTiltZ);
             this.GroupBox3.Controls.Add(this.lblTiltY);
@@ -515,6 +517,17 @@ namespace WISPDemo
             this.GroupBox3.TabIndex = 9;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "Demo";
+            // 
+            // chkMIDI
+            // 
+            this.chkMIDI.AutoSize = true;
+            this.chkMIDI.Location = new System.Drawing.Point(173, 24);
+            this.chkMIDI.Name = "chkMIDI";
+            this.chkMIDI.Size = new System.Drawing.Size(49, 17);
+            this.chkMIDI.TabIndex = 27;
+            this.chkMIDI.Text = "MIDI";
+            this.chkMIDI.UseVisualStyleBackColor = true;
+            this.chkMIDI.CheckedChanged += new System.EventHandler(this.chkMIDI_CheckedChanged);
             // 
             // btnCalAccel
             // 
@@ -565,7 +578,7 @@ namespace WISPDemo
             // chkSaturn
             // 
             this.chkSaturn.AutoSize = true;
-            this.chkSaturn.Location = new System.Drawing.Point(134, 25);
+            this.chkSaturn.Location = new System.Drawing.Point(104, 24);
             this.chkSaturn.Name = "chkSaturn";
             this.chkSaturn.Size = new System.Drawing.Size(57, 17);
             this.chkSaturn.TabIndex = 9;
@@ -1299,40 +1312,40 @@ namespace WISPDemo
             // 
             // dgvTagStats
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTagStats.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTagStats.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTagStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTagStats.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTagStats.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTagStats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTagStats.Location = new System.Drawing.Point(388, 122);
             this.dgvTagStats.Name = "dgvTagStats";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTagStats.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTagStats.Size = new System.Drawing.Size(715, 433);
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTagStats.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvTagStats.Size = new System.Drawing.Size(598, 433);
             this.dgvTagStats.TabIndex = 45;
-            this.dgvTagStats.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTagStats_CellContentClick);
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -1351,18 +1364,8 @@ namespace WISPDemo
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 605);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(987, 592);
             this.tableLayoutPanel1.TabIndex = 89;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.label45);
-            this.flowLayoutPanel2.Controls.Add(this.txtMessages);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 561);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(379, 41);
-            this.flowLayoutPanel2.TabIndex = 46;
             // 
             // flowLayoutPanel1
             // 
@@ -1370,10 +1373,9 @@ namespace WISPDemo
             this.flowLayoutPanel1.Controls.Add(this.btnSettings);
             this.flowLayoutPanel1.Controls.Add(this.btnLogging);
             this.flowLayoutPanel1.Controls.Add(this.label39);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(388, 561);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(715, 41);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 28);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnClear
@@ -1406,24 +1408,32 @@ namespace WISPDemo
             this.btnLogging.UseVisualStyleBackColor = true;
             this.btnLogging.Click += new System.EventHandler(this.btnLogging_Click);
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label45);
+            this.flowLayoutPanel2.Controls.Add(this.txtMessages);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 561);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(379, 28);
+            this.flowLayoutPanel2.TabIndex = 46;
+            // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.label2);
             this.flowLayoutPanel3.Controls.Add(this.lblTagsPerSecond);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(388, 79);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(715, 37);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(598, 37);
             this.flowLayoutPanel3.TabIndex = 47;
             // 
             // flowLayoutPanel4
             // 
             this.flowLayoutPanel4.Controls.Add(this.groupBox6);
             this.flowLayoutPanel4.Controls.Add(this.tableLayoutPanel2);
-            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(388, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(715, 70);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(598, 68);
             this.flowLayoutPanel4.TabIndex = 48;
             // 
             // tableLayoutPanel2
@@ -1454,13 +1464,14 @@ namespace WISPDemo
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1006, 605);
+            this.ClientSize = new System.Drawing.Size(987, 592);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WISP GUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.MainFrm_Load);
+            this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1487,10 +1498,10 @@ namespace WISPDemo
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1622,6 +1633,7 @@ namespace WISPDemo
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.CheckBox chkMIDI;
     }
 }
 

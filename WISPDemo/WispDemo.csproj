@@ -95,7 +95,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="WispDemo.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,6 +144,10 @@
     <ProjectReference Include="..\Logging\Logging.csproj">
       <Project>{D8C2B4F5-7F14-4FFD-80C2-C116C8CB2028}</Project>
       <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MidiDemo\MidiDemo.csproj">
+      <Project>{8763763E-A581-4E96-B9B8-A9F5D09486F0}</Project>
+      <Name>MidiDemo</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReaderLibrary\ReaderLibrary.csproj">
       <Project>{FD108C0F-8485-4296-9C56-E39A875D65DD}</Project>
