@@ -31,14 +31,3 @@ C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impi
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\ReaderLibrary\obj\Release\GenerateResource.write.1.tlog
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\ReaderLibrary\obj\Release\ReaderLibrary.dll
 C:\Users\anparks\Dropbox\WISP - Reader App\Impinj Reader App (VS 2010)\WISP_Impinj_Reader_App_v3.1\ReaderLibrary\obj\Release\ReaderLibrary.pdb
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\bin\Release\ReaderLibrary.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\bin\Release\ReaderLibrary.pdb
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\bin\Release\LLRP.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\bin\Release\LLRP.pdb
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\ResolveAssemblyReference.cache
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\ReaderLibrary.Properties.Resources.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\ReaderLibrary.SettingsForm.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\GenerateResource.read.1.tlog
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\GenerateResource.write.1.tlog
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\ReaderLibrary.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\ReaderLibrary\obj\Release\ReaderLibrary.pdb

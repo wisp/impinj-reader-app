@@ -26,16 +26,3 @@ C:\Users\anparks\Dropbox\RFIDvox\MIDI_Control_Demo_v1\Sanford.Multimedia.Midi\ob
 C:\Users\anparks\Dropbox\RFIDvox\MIDI_Control_Demo_v1\Sanford.Multimedia.Midi\obj\Release\GenerateResource-ResGen.write.1.tlog
 C:\Users\anparks\Dropbox\RFIDvox\MIDI_Control_Demo_v1\Sanford.Multimedia.Midi\obj\Release\ResGen.write.1.tlog
 C:\Users\anparks\Dropbox\RFIDvox\MIDI_Control_Demo_v1\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\bin\Release\Sanford.Multimedia.Midi.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\bin\Release\Sanford.Collections.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\bin\Release\Sanford.Multimedia.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\bin\Release\Sanford.Multimedia.Timers.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\bin\Release\Sanford.Threading.dll
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\ResolveAssemblyReference.cache
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.UI.DeviceDialog.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.UI.InputDeviceDialog.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.UI.OutputDeviceDialog.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.UI.PianoControlDialog.resources
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\ResGen.read.1.tlog
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\ResGen.write.1.tlog
-C:\Users\anparks\Dropbox\WISP - Reader App\impinj-reader-app\Sanford.Multimedia.Midi\obj\Release\Sanford.Multimedia.Midi.dll
