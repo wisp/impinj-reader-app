@@ -62,6 +62,7 @@ namespace MIDI_Control_Demo
 
         protected override void OnLoad(EventArgs e)
         {
+            updateParamDisplay();
 
             base.OnLoad(e);
 
@@ -99,12 +100,12 @@ namespace MIDI_Control_Demo
                 // X accel controls note value, Y accel controls modulation
                 newNote.instr = (int)(instrumentSelect.Value);
 
-                // Use WHOLE TONE SCALE for creepy sounds, and rescale for midrange notes
-                newNote.val = ((int)((xac_Scaled + 160) / 6)) * 2;
+                // Use WHOLE TONE SCALE for creepy sounds, and rescale for mid-high range notes
+                newNote.val = ((int)((xac_Scaled + 240) / 8)) * 2;
 
-                newNote.vol = (int)(volumeSelect.Value);
+                newNote.vol = yac_Scaled;
                 newNote.pitch = (int)(pitchBendSelect.Value);
-                newNote.mod = yac_Scaled;
+                newNote.mod = (int)(modSelect.Value);
             }
             else if(opt_mode2.Checked)
             {
@@ -223,12 +224,10 @@ namespace MIDI_Control_Demo
         {
             if (firstRunFlag)
             {
-                xac_max = xac;
-                xac_min = xac - 1;
-                yac_max = yac;
-                yac_min = yac - 1;
-                zac_max = zac;
-                zac_min = zac - 1;
+                // Don't use initial values sent in by accel demo, as they are garbage.
+                xac_max = yac_max = zac_max = 51;
+                xac_min = yac_min = zac_min = 49;
+                xac = yac = zac = 50;
                 firstRunFlag = false;
             }
             else
@@ -247,6 +246,16 @@ namespace MIDI_Control_Demo
                     zac_max = zac;
                 if (zac < zac_min)
                     zac_min = zac;
+
+                /*
+                // High pass filter the max/min vals
+                xac_max = 0.9 * xac_max + 0.1 * (xac_max + xac_min) / 2;
+                xac_min = 0.9 * xac_min + 0.1 * (xac_max + xac_min) / 2;
+                yac_max = 0.9 * yac_max + 0.1 * (xac_max + xac_min) / 2;
+                yac_min = 0.9 * yac_min + 0.1 * (xac_max + xac_min) / 2;
+                zac_max = 0.9 * zac_max + 0.1 * (xac_max + xac_min) / 2;
+                zac_min = 0.9 * zac_min + 0.1 * (xac_max + xac_min) / 2;
+                */
                 
                 // Autoscale based on historical min/max values
                 xac_Scaled = (int)Math.Round(((xac - xac_min) * 127) / (xac_max - xac_min));
@@ -358,9 +367,9 @@ namespace MIDI_Control_Demo
                 // X accel controls note value, Y accel controls modulation
                 instrumentSelect.Enabled = true;
                 noteSelect.Enabled = false;
-                volumeSelect.Enabled = true;
+                volumeSelect.Enabled = false;
                 pitchBendSelect.Enabled = true;
-                modSelect.Enabled = false;
+                modSelect.Enabled = true;
             }
             else if (opt_mode2.Checked)
             {
