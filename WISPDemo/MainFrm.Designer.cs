@@ -29,8 +29,10 @@ namespace WISPDemo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnInv = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblMode = new System.Windows.Forms.Label();
@@ -62,6 +64,7 @@ namespace WISPDemo
             this.lblYMin = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkMIDI = new System.Windows.Forms.CheckBox();
             this.btnCalAccel = new System.Windows.Forms.Button();
             this.lblTiltZ = new System.Windows.Forms.Label();
             this.lblTiltY = new System.Windows.Forms.Label();
@@ -133,8 +136,6 @@ namespace WISPDemo
             this.label39 = new System.Windows.Forms.Label();
             this.lblTagsPerSecond = new System.Windows.Forms.Label();
             this.timerTagRateMeasure = new System.Windows.Forms.Timer(this.components);
-            this.pnlTagList = new System.Windows.Forms.Panel();
-            this.dgvTagStats = new System.Windows.Forms.DataGridView();
             this.label45 = new System.Windows.Forms.Label();
             this.txtMessages = new System.Windows.Forms.TextBox();
             this.timerAttenuatorTest = new System.Windows.Forms.Timer(this.components);
@@ -142,8 +143,17 @@ namespace WISPDemo
             this.chkReadDisabled = new System.Windows.Forms.RadioButton();
             this.chkReadAll = new System.Windows.Forms.RadioButton();
             this.chkReadSelected = new System.Windows.Forms.RadioButton();
+            this.dgvTagStats = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnLogging = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -159,29 +169,25 @@ namespace WISPDemo
             ((System.ComponentModel.ISupportInitialize)(this.tbarSocFilter)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarTagsPerSecFilter)).BeginInit();
-            this.pnlTagList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(394, 72);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 25);
             this.label2.TabIndex = 7;
             this.label2.Text = "Total Tag Rate : ";
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(561, 562);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(92, 23);
-            this.btnClear.TabIndex = 10;
-            this.btnClear.Text = "&Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnInv
             // 
@@ -200,7 +206,7 @@ namespace WISPDemo
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtIPAddress);
             this.groupBox2.Controls.Add(this.btnConnect);
-            this.groupBox2.Location = new System.Drawing.Point(14, 4);
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(357, 65);
             this.groupBox2.TabIndex = 22;
@@ -240,7 +246,8 @@ namespace WISPDemo
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(152, 20);
             this.txtIPAddress.TabIndex = 1;
-            this.txtIPAddress.Text = "128.95.30.126";
+            this.txtIPAddress.Text = "speedway-00-05-56.local";
+            this.txtIPAddress.TextChanged += new System.EventHandler(this.txtIPAddress_TextChanged);
             // 
             // btnConnect
             // 
@@ -255,9 +262,9 @@ namespace WISPDemo
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Georgia", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(738, 8);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 38);
+            this.label1.Size = new System.Drawing.Size(220, 32);
             this.label1.TabIndex = 25;
             this.label1.Text = "WISP Demo App";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -269,10 +276,11 @@ namespace WISPDemo
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(8, 75);
+            this.tabControl1.Location = new System.Drawing.Point(3, 79);
             this.tabControl1.Name = "tabControl1";
+            this.tableLayoutPanel1.SetRowSpan(this.tabControl1, 2);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(380, 481);
+            this.tabControl1.Size = new System.Drawing.Size(378, 476);
             this.tabControl1.TabIndex = 27;
             // 
             // tabPage2
@@ -283,7 +291,7 @@ namespace WISPDemo
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(372, 455);
+            this.tabPage2.Size = new System.Drawing.Size(370, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Accel";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -488,6 +496,7 @@ namespace WISPDemo
             // 
             // GroupBox3
             // 
+            this.GroupBox3.Controls.Add(this.chkMIDI);
             this.GroupBox3.Controls.Add(this.btnCalAccel);
             this.GroupBox3.Controls.Add(this.lblTiltZ);
             this.GroupBox3.Controls.Add(this.lblTiltY);
@@ -508,6 +517,17 @@ namespace WISPDemo
             this.GroupBox3.TabIndex = 9;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "Demo";
+            // 
+            // chkMIDI
+            // 
+            this.chkMIDI.AutoSize = true;
+            this.chkMIDI.Location = new System.Drawing.Point(173, 24);
+            this.chkMIDI.Name = "chkMIDI";
+            this.chkMIDI.Size = new System.Drawing.Size(49, 17);
+            this.chkMIDI.TabIndex = 27;
+            this.chkMIDI.Text = "MIDI";
+            this.chkMIDI.UseVisualStyleBackColor = true;
+            this.chkMIDI.CheckedChanged += new System.EventHandler(this.chkMIDI_CheckedChanged);
             // 
             // btnCalAccel
             // 
@@ -558,7 +578,7 @@ namespace WISPDemo
             // chkSaturn
             // 
             this.chkSaturn.AutoSize = true;
-            this.chkSaturn.Location = new System.Drawing.Point(134, 25);
+            this.chkSaturn.Location = new System.Drawing.Point(104, 24);
             this.chkSaturn.Name = "chkSaturn";
             this.chkSaturn.Size = new System.Drawing.Size(57, 17);
             this.chkSaturn.TabIndex = 9;
@@ -735,7 +755,7 @@ namespace WISPDemo
             this.tabPage3.Controls.Add(this.label37);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(372, 455);
+            this.tabPage3.Size = new System.Drawing.Size(370, 450);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Temp";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -744,13 +764,13 @@ namespace WISPDemo
             // 
             this.graphTemperature.Location = new System.Drawing.Point(8, 176);
             this.graphTemperature.Name = "graphTemperature";
-            this.graphTemperature.ScrollGrace = 0;
-            this.graphTemperature.ScrollMaxX = 0;
-            this.graphTemperature.ScrollMaxY = 0;
-            this.graphTemperature.ScrollMaxY2 = 0;
-            this.graphTemperature.ScrollMinX = 0;
-            this.graphTemperature.ScrollMinY = 0;
-            this.graphTemperature.ScrollMinY2 = 0;
+            this.graphTemperature.ScrollGrace = 0D;
+            this.graphTemperature.ScrollMaxX = 0D;
+            this.graphTemperature.ScrollMaxY = 0D;
+            this.graphTemperature.ScrollMaxY2 = 0D;
+            this.graphTemperature.ScrollMinX = 0D;
+            this.graphTemperature.ScrollMinY = 0D;
+            this.graphTemperature.ScrollMinY2 = 0D;
             this.graphTemperature.Size = new System.Drawing.Size(355, 267);
             this.graphTemperature.TabIndex = 45;
             // 
@@ -798,7 +818,7 @@ namespace WISPDemo
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(372, 455);
+            this.tabPage4.Size = new System.Drawing.Size(370, 450);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Cap";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -822,7 +842,7 @@ namespace WISPDemo
             this.tabPage5.Controls.Add(this.label29);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(372, 455);
+            this.tabPage5.Size = new System.Drawing.Size(370, 450);
             this.tabPage5.TabIndex = 6;
             this.tabPage5.Text = "SOC";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -961,13 +981,13 @@ namespace WISPDemo
             // 
             this.graphSOC.Location = new System.Drawing.Point(4, 195);
             this.graphSOC.Name = "graphSOC";
-            this.graphSOC.ScrollGrace = 0;
-            this.graphSOC.ScrollMaxX = 0;
-            this.graphSOC.ScrollMaxY = 0;
-            this.graphSOC.ScrollMaxY2 = 0;
-            this.graphSOC.ScrollMinX = 0;
-            this.graphSOC.ScrollMinY = 0;
-            this.graphSOC.ScrollMinY2 = 0;
+            this.graphSOC.ScrollGrace = 0D;
+            this.graphSOC.ScrollMaxX = 0D;
+            this.graphSOC.ScrollMaxY = 0D;
+            this.graphSOC.ScrollMaxY2 = 0D;
+            this.graphSOC.ScrollMinX = 0D;
+            this.graphSOC.ScrollMinY = 0D;
+            this.graphSOC.ScrollMinY2 = 0D;
             this.graphSOC.Size = new System.Drawing.Size(355, 257);
             this.graphSOC.TabIndex = 53;
             // 
@@ -997,7 +1017,7 @@ namespace WISPDemo
             this.tabPage6.Controls.Add(this.txtSaturnRefreshMs);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(372, 455);
+            this.tabPage6.Size = new System.Drawing.Size(370, 450);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Debug";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1190,11 +1210,11 @@ namespace WISPDemo
             // label36
             // 
             this.label36.Font = new System.Drawing.Font("Georgia", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(851, 51);
+            this.label36.Location = new System.Drawing.Point(3, 32);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(122, 31);
             this.label36.TabIndex = 41;
-            this.label36.Text = "Version 3.0";
+            this.label36.Text = "Version 3.1";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // timerFrameRateMeasure
@@ -1206,7 +1226,7 @@ namespace WISPDemo
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(832, 567);
+            this.label39.Location = new System.Drawing.Point(263, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(142, 13);
             this.label39.TabIndex = 42;
@@ -1215,7 +1235,7 @@ namespace WISPDemo
             // lblTagsPerSecond
             // 
             this.lblTagsPerSecond.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTagsPerSecond.Location = new System.Drawing.Point(586, 72);
+            this.lblTagsPerSecond.Location = new System.Drawing.Point(152, 0);
             this.lblTagsPerSecond.Name = "lblTagsPerSecond";
             this.lblTagsPerSecond.Size = new System.Drawing.Size(67, 25);
             this.lblTagsPerSecond.TabIndex = 43;
@@ -1228,26 +1248,10 @@ namespace WISPDemo
             this.timerTagRateMeasure.Interval = 2000;
             this.timerTagRateMeasure.Tick += new System.EventHandler(this.timerTagRateMeasure_Tick);
             // 
-            // pnlTagList
-            // 
-            this.pnlTagList.Controls.Add(this.dgvTagStats);
-            this.pnlTagList.Location = new System.Drawing.Point(396, 98);
-            this.pnlTagList.Name = "pnlTagList";
-            this.pnlTagList.Size = new System.Drawing.Size(577, 458);
-            this.pnlTagList.TabIndex = 45;
-            // 
-            // dgvTagStats
-            // 
-            this.dgvTagStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTagStats.Location = new System.Drawing.Point(0, 3);
-            this.dgvTagStats.Name = "dgvTagStats";
-            this.dgvTagStats.Size = new System.Drawing.Size(574, 451);
-            this.dgvTagStats.TabIndex = 45;
-            // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(19, 565);
+            this.label45.Location = new System.Drawing.Point(3, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(58, 13);
             this.label45.TabIndex = 60;
@@ -1256,7 +1260,7 @@ namespace WISPDemo
             // txtMessages
             // 
             this.txtMessages.Enabled = false;
-            this.txtMessages.Location = new System.Drawing.Point(89, 562);
+            this.txtMessages.Location = new System.Drawing.Point(67, 3);
             this.txtMessages.Name = "txtMessages";
             this.txtMessages.Size = new System.Drawing.Size(293, 20);
             this.txtMessages.TabIndex = 59;
@@ -1267,7 +1271,7 @@ namespace WISPDemo
             this.groupBox6.Controls.Add(this.chkReadAll);
             this.groupBox6.Controls.Add(this.chkReadSelected);
             this.groupBox6.Controls.Add(this.btnInv);
-            this.groupBox6.Location = new System.Drawing.Point(382, 4);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(350, 65);
             this.groupBox6.TabIndex = 61;
@@ -1306,9 +1310,87 @@ namespace WISPDemo
             this.chkReadSelected.Text = "Read Selected";
             this.chkReadSelected.UseVisualStyleBackColor = true;
             // 
+            // dgvTagStats
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTagStats.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvTagStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTagStats.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvTagStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTagStats.Location = new System.Drawing.Point(388, 122);
+            this.dgvTagStats.Name = "dgvTagStats";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTagStats.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvTagStats.Size = new System.Drawing.Size(598, 433);
+            this.dgvTagStats.TabIndex = 45;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dgvTagStats, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel5, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(987, 592);
+            this.tableLayoutPanel1.TabIndex = 89;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnClear);
+            this.flowLayoutPanel1.Controls.Add(this.btnSettings);
+            this.flowLayoutPanel1.Controls.Add(this.btnLogging);
+            this.flowLayoutPanel1.Controls.Add(this.label39);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(388, 561);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 28);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(3, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(92, 23);
+            this.btnClear.TabIndex = 10;
+            this.btnClear.Text = "&Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(399, 562);
+            this.btnSettings.Location = new System.Drawing.Point(101, 3);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(75, 23);
             this.btnSettings.TabIndex = 62;
@@ -1318,7 +1400,7 @@ namespace WISPDemo
             // 
             // btnLogging
             // 
-            this.btnLogging.Location = new System.Drawing.Point(480, 562);
+            this.btnLogging.Location = new System.Drawing.Point(182, 3);
             this.btnLogging.Name = "btnLogging";
             this.btnLogging.Size = new System.Drawing.Size(75, 23);
             this.btnLogging.TabIndex = 88;
@@ -1326,30 +1408,69 @@ namespace WISPDemo
             this.btnLogging.UseVisualStyleBackColor = true;
             this.btnLogging.Click += new System.EventHandler(this.btnLogging_Click);
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label45);
+            this.flowLayoutPanel2.Controls.Add(this.txtMessages);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 561);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(379, 28);
+            this.flowLayoutPanel2.TabIndex = 46;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.label2);
+            this.flowLayoutPanel3.Controls.Add(this.lblTagsPerSecond);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(388, 79);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(598, 37);
+            this.flowLayoutPanel3.TabIndex = 47;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.groupBox6);
+            this.flowLayoutPanel4.Controls.Add(this.tableLayoutPanel2);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(388, 3);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(598, 68);
+            this.flowLayoutPanel4.TabIndex = 48;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label36, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(359, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(226, 65);
+            this.tableLayoutPanel2.TabIndex = 62;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(379, 70);
+            this.flowLayoutPanel5.TabIndex = 49;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 590);
-            this.Controls.Add(this.btnLogging);
-            this.Controls.Add(this.btnSettings);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.label45);
-            this.Controls.Add(this.txtMessages);
-            this.Controls.Add(this.pnlTagList);
-            this.Controls.Add(this.lblTagsPerSecond);
-            this.Controls.Add(this.label39);
-            this.Controls.Add(this.label36);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label2);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(987, 592);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WISP GUI";
-            this.Load += new System.EventHandler(this.MainFrm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
+            this.Load += new System.EventHandler(this.MainFrm_Load);
             this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1373,19 +1494,25 @@ namespace WISPDemo
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarTagsPerSecFilter)).EndInit();
-            this.pnlTagList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTagStats)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnInv;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblStatus;
@@ -1471,8 +1598,6 @@ namespace WISPDemo
         private System.Windows.Forms.Label lblGUITime;
         private System.Windows.Forms.Label lblHandlerTime;
         private System.Windows.Forms.TextBox txtBoxTags;
-        private System.Windows.Forms.Panel pnlTagList;
-        private System.Windows.Forms.DataGridView dgvTagStats;
         private System.Windows.Forms.Label lblMode;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
@@ -1484,8 +1609,6 @@ namespace WISPDemo
         private System.Windows.Forms.RadioButton chkReadSelected;
         private System.Windows.Forms.RadioButton chkReadDisabled;
         private System.Windows.Forms.CheckBox chkSOCV1V2;
-        private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Button btnLogging;
         internal System.Windows.Forms.TrackBar tbarSocFilter;
         internal System.Windows.Forms.Label lblSocLowPassFilter;
         private System.Windows.Forms.Label lblSocTemperature;
@@ -1499,6 +1622,18 @@ namespace WISPDemo
         private System.Windows.Forms.Label label29;
         internal System.Windows.Forms.Label lblSocCalOk;
         private System.Windows.Forms.CheckBox chkSocPlotTemp;
+        private System.Windows.Forms.DataGridView dgvTagStats;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnLogging;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.CheckBox chkMIDI;
     }
 }
 

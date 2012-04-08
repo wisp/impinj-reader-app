@@ -191,8 +191,8 @@ namespace WISPDemo
             tagStatsDataGridView.Columns[(int)StatColumnIdx.COUNT].Width = 46;
             tagStatsDataGridView.Columns[(int)StatColumnIdx.LAST_SEEN].Width = 118;
             tagStatsDataGridView.Columns[(int)StatColumnIdx.TX_COUNTER].Width = 57;
-            tagStatsDataGridView.Columns[(int)StatColumnIdx.EPC].Width = 165;
-            tagStatsDataGridView.Columns[(int)StatColumnIdx.DATA].Width = 57;
+            tagStatsDataGridView.Columns[(int)StatColumnIdx.EPC].Width = 180;
+            tagStatsDataGridView.Columns[(int)StatColumnIdx.DATA].Width = 180;
 
             // Add column labels
             tagStatsDataGridView.Columns[(int)StatColumnIdx.SERIAL_NUM].Name = "Serial #";

@@ -34,7 +34,7 @@ namespace SaturnDemo
         //In Project>References... in VB menu check item VB Gl API 1.2 (ANSI) 
 
         #region Structs
-        // Struts for the componets of the Saturn drawing
+        // Structs for the components of the Saturn drawing
         public struct glVertex
         {
             public float U;
@@ -50,9 +50,9 @@ namespace SaturnDemo
 
         #endregion
 
-        #region InstaceVariables
+        #region InstanceVariables
 
-        // instaces variables
+        // instance variables
         private bool stageLoaded = false;
 
         // Defines viewer's position
@@ -81,7 +81,7 @@ namespace SaturnDemo
 
         #endregion
 
-      
+
 
 
         public Stage()
@@ -100,9 +100,9 @@ namespace SaturnDemo
                 InitGL.EnableOpenGL(this.CreateGraphics().GetHdc());
             } while (!InitGL.IsEnable());
 
+            //FIXME: Magic numbers
             //Initial rotation
             defviewangleX = 0;
-            //defviewangleY = 70;
             defviewangleY = 90;
 
             //viewangleX = 20 ' very old
@@ -110,7 +110,7 @@ namespace SaturnDemo
             viewangleY = defviewangleY;
             angleX = 0 - viewangleX;
             angleY = 0 - viewangleY;
-            
+
             DrawInit();
 
             stageLoaded = true;
@@ -125,12 +125,12 @@ namespace SaturnDemo
             return stageLoaded;
         }
 
-        public float GetViewAngelX()
+        public float GetViewAngleX()
         {
             return viewangleX;
         }
 
-        public float GetViewAngelY()
+        public float GetViewAngleY()
         {
             return viewangleY;
         }
@@ -156,7 +156,7 @@ namespace SaturnDemo
 
         private void DrawInit()
         {
-            //Uncoment next procedure to take material properties in account
+            //Uncomment next procedure to take material properties in account
 
             SetMaterial();
             //only for demostration of possibilities, not very accurate
@@ -218,10 +218,10 @@ namespace SaturnDemo
                 Gl.glBindTexture(Gl.GL_TEXTURE_2D, Texture[0]);
                 Gl.glColor3f(1, 1, 1);
 
-                Glu.gluSphere(quadObj, 0.601, 40, 40);
+                Glu.gluSphere(quadObj, 0.601, 40, 40); //FIXME: Magic Numbers
                 //draw rings
                 Gl.glBindTexture(Gl.GL_TEXTURE_2D, Texture[1]);
-                Gl.glColor3f((float)1.0, (float)0.88, (float)0.82);
+                Gl.glColor3f((float)1.0, (float)0.88, (float)0.82); //FIXME: Magic Numbers
                 DrawDisk();
                 Gl.glPopMatrix();
 
@@ -264,6 +264,7 @@ namespace SaturnDemo
 
         private void SetLight()
         {
+            //FIXME: This function full of magic numbers
             float[] AmbientLight = new float[4];
             float[] DiffuseLight = new float[4];
             float[] LightPos = new float[4];
@@ -342,6 +343,8 @@ namespace SaturnDemo
 
         private void CalculateDisk()
         {
+            //FIXME: Magic Number alert for this entire function
+
             long angle;
             double radius1;
             double radius2;
@@ -354,23 +357,20 @@ namespace SaturnDemo
             radius1 = 0.744;
             radius2 = 1.402;
 
-            //radius1 = 0.744 / 2;
-            //radius2 = 1.402 / 2;
             i = 0;
 
             for (angle = 0; angle <= 360; angle += 8)
             {
+                // Calculate position of vertices for inner circle
                 DiskVertex[i].X = (float)(radius1 * Math.Sin(rads * (angle - 90)));
-                //x position
                 DiskVertex[i].Y = (float)(radius1 * Math.Sin(rads * angle));
-                //y position
+
                 i++;
 
-                //I = I + 1;
+                // Calculate position of vertices for outer circle
                 DiskVertex[i].X = (float)(radius2 * Math.Sin(rads * (angle - 90)));
                 DiskVertex[i].Y = (float)(radius2 * Math.Sin(rads * angle));
 
-                //i= i + 1;
                 i++;
             }
         }
@@ -387,7 +387,7 @@ namespace SaturnDemo
             //for (int i = 0; i <= value - 3; i += 2)
             {
                 Gl.glBegin(Gl.GL_TRIANGLES);
-                //1st triange
+                //1st triangle
                 Gl.glTexCoord2f(0, 0);
                 Gl.glVertex3f(DiskVertex[i].X, DiskVertex[i].Y, 0);
                 Gl.glTexCoord2f(1, 0);
@@ -408,14 +408,14 @@ namespace SaturnDemo
 
         private void Stage_Resize(object sender, EventArgs e)
         {
+            //FIXME: Magic numbers follow, throughout this function. 
+
             int w;
             int h;
-            //if (FormWindowState.Minimized) return; // TODO: might not be correct. Was : Exit Sub
 
-            if (this.WindowState == System.Windows.Forms.FormWindowState.Maximized)
-            {
+            if (this.WindowState == System.Windows.Forms.FormWindowState.Minimized)
                 return;
-            }
+
             w = this.ClientSize.Width;
             h = this.ClientSize.Height;
             Gl.glViewport(0, 0, w, h);
@@ -441,8 +441,6 @@ namespace SaturnDemo
         {
             Glu.gluDeleteQuadric(quadObj);
             InitGL.DisableOpenGL();
-            //Debug.Print("stage unload.");
-            //MainFrm.CheckSaturn() = false;
             stageLoaded = false;
         }
 

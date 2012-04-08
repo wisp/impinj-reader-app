@@ -105,6 +105,7 @@ using System.Diagnostics;
 using ZedGraph;
 
 using SaturnDemo;
+using MIDI_Control_Demo;
 using ReaderLibrary;
 using Logging;
 //using AttenuatorTest;
@@ -113,34 +114,32 @@ namespace WISPDemo
 {
     public partial class MainFrm : Form, ReaderLibrary.IRFIDGUI
     {
-        private Saturn saturn;
+        private SaturnDemo.Saturn saturn;
+        private MIDI_Control_Demo.Midi midi;
         //private RFIDReader reader;
         private ReaderManager readerMgr;
         private TagStats stats;
         private WispHandleTags handleTags;
 
-
         // Keep the default size information so we know by how much to strech
         // the tag list data grid view
-        private Size formInitialSize;
-        private Size pnlTagListInitialSize;
+        private int formInitialHeight;
+        private int pnlTagListInitialHeight;
 
         private Form setting;
         private Form loggingForm;
 
         private LoggingManager log;
-        
+
 
         public MainFrm()
         {
             InitializeComponent();
-            
+
         }
 
         private void MainFrm_Load(object sender, EventArgs e)
         {
-            // set position of form
-            //base.Location = new Point(800, 150);
 
             // reader is our handle to the physical reader.
             //reader = new RFIDReader(this);
@@ -148,9 +147,12 @@ namespace WISPDemo
             readerMgr = new ReaderManager(this, handleTags);
 
             log = new WispLoggingManager();
-            
+
             // init the saturn object.
-            saturn = new Saturn();
+            saturn = new SaturnDemo.Saturn();
+
+            // Init midi config
+            midi = new MIDI_Control_Demo.Midi();
 
             // Setup axis labels for the various graphs.
             InitSOCGraph();
@@ -159,9 +161,9 @@ namespace WISPDemo
             // Other init code
             InitTagStats();
 
-            // Store initial sizes (for resize operation).
-            formInitialSize = this.Size;
-            pnlTagListInitialSize = pnlTagList.Size;
+            // Grab initial component sizes for easy resize
+            formInitialHeight = this.Height;
+            pnlTagListInitialHeight = dgvTagStats.Height;
 
             // Init GUI operational mode to idle (disconnected)
             SetMode(ReaderManager.GuiModes.Idle);
@@ -216,7 +218,7 @@ namespace WISPDemo
         private double zMin = 100;
 
 
-        
+
 
         public void ClearMaxMin()
         {
@@ -242,7 +244,19 @@ namespace WISPDemo
             saturn.ModelData(xac, yac, zac);
         }
 
+        private void UpdateMidiGui()
+        {
+            double xac, yac, zac;
+            xac = handleTags.GetCurrentX();
+            yac = handleTags.GetCurrentY();
+            zac = handleTags.GetCurrentZ();
 
+            if (chkFlipX.Checked) xac = 100 - xac;
+            if (chkFlipY.Checked) yac = 100 - yac;
+
+            this.midi.ReOpenMidiConfig();
+            this.midi.updateMidi(xac, yac, zac);
+        }
 
         private void UpdateAccelerometerGUI()
         {
@@ -251,9 +265,7 @@ namespace WISPDemo
 
             GetMaxMinValues();  // accel min max
 
-            // update saturn
-
-                  
+            // Update saturn
             if (chkSaturn.Checked)
             {
                 UpdateGraphicsOnSaturn();
@@ -263,6 +275,14 @@ namespace WISPDemo
                 this.saturn.DisposeSaturn();
             }
             saturnFrames++;
+
+            // Update MIDI out if checked
+            if (chkMIDI.Checked)
+            {
+                UpdateMidiGui();
+                
+            }
+            
         }
 
 
@@ -408,7 +428,7 @@ namespace WISPDemo
         #region Temperature
 
 
-        
+
         private void ClearTemperature()
         {
             handleTags.ClearTemperature();
@@ -454,7 +474,7 @@ namespace WISPDemo
 
                 if (tempPane.YAxis.Scale.Min > 10)
                     tempPane.YAxis.Scale.Min = 10;
-                if (tempPane.YAxis.Scale.Max < 40) 
+                if (tempPane.YAxis.Scale.Max < 40)
                     tempPane.YAxis.Scale.Max = 40;
 
                 graphTemperature.Refresh();
@@ -462,13 +482,13 @@ namespace WISPDemo
             handleTags.incrementTemperatureDataCount();
         }
 
-        
+
         #endregion
 
 
         #region Other Sensors And Statistics
 
-        
+
         private void InitTagStats()
         {
             stats = new TagStats(dgvTagStats);
@@ -489,11 +509,11 @@ namespace WISPDemo
                 log.WriteToLog(newTags);
 
                 newTags.Clear();
-              
+
             }
 
         }
-        
+
 
         static string currTime = ((DateTime.Now.ToString()).Replace(":", ".")).Replace("/", "-");
 
@@ -501,7 +521,7 @@ namespace WISPDemo
 
         #endregion
 
-        
+
 
         #region GUI Update
 
@@ -541,15 +561,26 @@ namespace WISPDemo
             txtBoxTags.Text = tagTextBoxContent;
             txtDebugMessages.Text = debugTextBoxContent;
 
+            // Update Saturn checkbox
+            if (!saturn.IsSaturnOpen())
+            {
+                chkSaturn.Checked = false;
+            }
+
+            // Update MIDI checkbox
+            if (!midi.IsMidiConfigOpen())
+            {
+                chkMIDI.Checked = false;
+            }
+
             //  ***** this is the heart of it ******   //
             // Update the relevant sensor gui sections:
+
+
             if (readerMgr.IsInventoryRunning())
             {
                 // Sensor Processing
-                if (!saturn.IsSaturnOpen())
-                {
-                   chkSaturn.Checked = false;
-                }
+
                 UpdateAccelerometerGUI();
                 UpdateTemperatureGUI();
                 UpdateSOCGUI();
@@ -584,7 +615,7 @@ namespace WISPDemo
                     }
                 }
             }
-            else if(readerMgr.IsConnected())
+            else if (readerMgr.IsConnected())
                 readerMgr.StopRead();
 
             // Update time info
@@ -599,7 +630,7 @@ namespace WISPDemo
             lblGUITime.Text = "GUI Time: " + peakGuiTime.ToString() + " ms";
             //lblHandlerTime.Text = "Handler Time: " + peakHandlerTime.ToString() + " ms";
 
-            // Application.DoEvents();  // removing this cut the gui handler down from 55ms to 20ms peak time
+            //Application.DoEvents();  // removing this cut the gui handler down from 55ms to 20ms peak time
             //                             with Saturn open, and with no effect on gui responsiveness!
             timerUpdateGUI.Enabled = true; // re-enable this timer.
         }
@@ -613,9 +644,9 @@ namespace WISPDemo
                 accelInfo.filterChkd = true;
                 accelInfo.alpha = tbarLPFilter.Value;
             }
-            
+
             // SOC WISP Stuff
-            if(chkSOCV1V2.Checked)
+            if (chkSOCV1V2.Checked)
                 handleTags.SetSOCVersion(2, accelInfo);
             else
                 handleTags.SetSOCVersion(1, accelInfo);
@@ -627,7 +658,7 @@ namespace WISPDemo
             double test = Double.Parse(txtSocCalTemp2.Text);
             try
             {
-                double slope = (Double.Parse(txtSocCalTemp2.Text) - Double.Parse(txtSocCalTemp1.Text)) / 
+                double slope = (Double.Parse(txtSocCalTemp2.Text) - Double.Parse(txtSocCalTemp1.Text)) /
                     (Double.Parse(txtSocCalAdc2.Text) - Double.Parse(txtSocCalAdc1.Text));
                 double intercept = Double.Parse(txtSocCalTemp2.Text) - Double.Parse(txtSocCalAdc2.Text) * slope;
                 handleTags.SetSOCIntercept(intercept);
@@ -755,12 +786,12 @@ namespace WISPDemo
 
             // Set the mode label to our current mode
             lblMode.Text = "Mode: " + currentMode.ToString();
-            
+
         }
 
         private void btnInv_Click(object sender, EventArgs e)
         {
-            if (btnInv.Text == "Inventory")
+            if (btnInv.Text == "Inventory") //FIXME: Hack alert. Use getCurrentMode instead.
                 SetMode(ReaderManager.GuiModes.UserInventory); // Start Inventory.
             else
                 SetMode(ReaderManager.GuiModes.Ready); // Stop Inventory
@@ -769,7 +800,7 @@ namespace WISPDemo
         private void btnConnect_Click(object sender, EventArgs e)
         {
             btnConnect.Enabled = false;
-            if (btnConnect.Text == "Connect")
+            if (btnConnect.Text == "Connect") //FIXME: Hack alert. Use getCurrentMode instead.
                 SetMode(ReaderManager.GuiModes.Ready);
             else
                 SetMode(ReaderManager.GuiModes.Idle);
@@ -787,18 +818,6 @@ namespace WISPDemo
         #endregion
 
 
-
-
-
-        private void MainFrm_ResizeEnd(object sender, EventArgs e)
-        {
-            int deltaWidth = this.Size.Width - formInitialSize.Width;
-            int deltaHeight = this.Size.Height - formInitialSize.Height;
-            Size s = new Size(pnlTagListInitialSize.Width + deltaWidth, pnlTagListInitialSize.Height + deltaHeight);
-            pnlTagList.Size = s;
-
-        }
-
         private void btnSettings_Click(object sender, EventArgs e)
         {
             if (setting == null || setting.IsDisposed)
@@ -815,7 +834,7 @@ namespace WISPDemo
 
         private void btnLogging_Click(object sender, EventArgs e)
         {
-            
+
             if (loggingForm == null || loggingForm.IsDisposed)
             {
                 loggingForm = new LoggingForm(log);
@@ -824,7 +843,32 @@ namespace WISPDemo
         }
 
 
-              
+        private void chkMIDI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMIDI.Checked)
+            {
+                this.midi.ReOpenMidiConfig();
+                UpdateAccelerometerGUI();
+            }
+            else
+            {
+                this.midi.DisposeMidiConfig();
+            }
+        }
+
+        private void MainFrm_ResizeEnd(object sender, EventArgs e)
+        {   
+            // Update height of tag panel when resize occurs
+            dgvTagStats.Height = pnlTagListInitialHeight + (this.Height - formInitialHeight);
+        
+        }
+
+        private void txtIPAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }   // end class
 
 }  // end namespace

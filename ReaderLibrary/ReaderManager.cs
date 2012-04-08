@@ -217,7 +217,7 @@ namespace ReaderLibrary
 
         
         /// <summary>
-        /// disconnect to Reader
+        /// disconnect from Reader
         /// </summary>
         public void Disconnect()
         {
@@ -522,10 +522,10 @@ namespace ReaderLibrary
                 switch (dr)
                 {
                     case ENUM_C1G2DRValue.DRV_8:
-                        outstr += "DR 8";
+                        outstr += "DR 64/3";
                         break;
                     case ENUM_C1G2DRValue.DRV_64_3:
-                        outstr += "DR 64/3";
+                        outstr += "DR 8";
                         break;
                 }
 
