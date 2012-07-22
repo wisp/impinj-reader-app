@@ -56,16 +56,11 @@ namespace SaturnDemo
         /// <param name="data"></param>
         public void ModelData(double xac, double yac, double zac)
         {
-            if (!myStage.IsDisposed)
-            {
-                updatePlanet(xac, yac, zac);
-                myStage.Show();     // Show the form
-                myStage.Render();   // Render the new values
-            }
-            else
-            {
-                ReOpenSaturn();
-            }
+            ReOpenSaturn(); // Create a new Stage if needed
+
+            updatePlanet(xac, yac, zac);
+            myStage.Show();     // Show the form
+            myStage.Render();   // Render the new values
         }
 
         public bool IsSaturnOpen()
@@ -73,7 +68,9 @@ namespace SaturnDemo
             return !myStage.IsDisposed;
         }
 
-
+        ///<summary>
+        ///If myStage is disposed, create a new one.
+        ///</summary>
         public void ReOpenSaturn()
         {
             if (myStage.IsDisposed) myStage = new Stage();   // create a new reference
@@ -88,7 +85,7 @@ namespace SaturnDemo
         }
 
         /// <summary>
-        /// Updates the Saturn to the given xac, yac, and zac accelations
+        /// Updates the Saturn to the given xac, yac, and zac accelerations
         /// </summary>
         /// <param name="xac"></param>
         /// <param name="yac"></param>

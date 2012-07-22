@@ -1,0 +1,3 @@
+C:\Users\Aaron\Downloads\wisp-impinj-reader-app-3.0-1-g27ad258\wisp-impinj-reader-app-27ad258\LLRPEndPointServerTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Aaron\Downloads\wisp-impinj-reader-app-3.0-1-g27ad258\wisp-impinj-reader-app-27ad258\LLRPEndPointServerTest\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Users\Aaron\Downloads\wisp-impinj-reader-app-3.0-1-g27ad258\wisp-impinj-reader-app-27ad258\LLRPEndPointServerTest\obj\Debug\GenerateResource-ResGen.write.1.tlog

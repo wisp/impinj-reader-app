@@ -20,6 +20,7 @@ using ZedGraph;
 using SaturnDemo;
 using ReaderLibrary;
 using Logging;
+using BinkBonk;
 
 namespace WISPDemo
 {
@@ -49,6 +50,8 @@ namespace WISPDemo
         public int temperatureDataCount = 0;
         public bool hasNewTempData = false;
 
+        // Bink Bonk
+        public BinkBonk_Demo binkBonkCallback;
 
 
 
@@ -102,6 +105,7 @@ namespace WISPDemo
                     HandleSOCTag(tag);
                     break;
                 default:
+                    HandleCommercialTag(tag);
                     // no action for now...
                     // this could be commercial tags, etc.
                     break;
@@ -165,6 +169,20 @@ namespace WISPDemo
             temperatureCelsius = t.GetTemperature();
             temperatureSource = t.GetTemperatureSensor();
             hasNewTempData = true;
+        }
+
+        public void setBinkBonkCallback(BinkBonk_Demo o)
+        {
+            binkBonkCallback = o;
+        }
+
+        private void HandleCommercialTag(MyTag tag)
+        {
+            // Assume commercial tag is intended for bink-bonk application
+            if (binkBonkCallback.isBinkBonkOpen())
+            {
+                binkBonkCallback.handleEPC(tag.GetEpcID());
+            }
         }
 
         private double SOCFilteredValue = 0;
@@ -258,8 +276,6 @@ namespace WISPDemo
                 newTags.Add(t);
             }
         }
-
-
         
         public double GetTemperatureCelsius()
         {
@@ -295,7 +311,6 @@ namespace WISPDemo
         {
             return newTags;
         }
-
 
         public PointPairList GetSOCData()
         {

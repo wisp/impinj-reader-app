@@ -77,7 +77,8 @@ namespace ReaderLibrary
         int socVersion = 1; // version 1 or version 2.
 
         TagType tagType;
-        public MyTag(string epcID, string time, string count, string firstSeen, 
+
+        public MyTag(string epcID, string time, string count, string firstSeen,
                      string lastSeen, string accessResultData, string rssi, string frequency)
         {
             this.epcID = epcID;
@@ -104,20 +105,16 @@ namespace ReaderLibrary
         public string GetAccessResultData() { return accessResultData; }
 
         public TagType EvalTagType()
-        {
+        { 
             TagType type = TagType.UNKNOWN;
             string id = epcID.ToString().Substring(0, 2);
-            switch(id)
+            switch (id)
             {
                 case "0B":
-                    type = TagType.WISP_ACCELEROMETER;
-                    break;
                 case "0D":
                     type = TagType.WISP_ACCELEROMETER;
                     break;
                 case "0F":
-                    type = TagType.WISP_TEMPERATURE;
-                    break;
                 case "0E":
                     type = TagType.WISP_TEMPERATURE;
                     break;
@@ -182,6 +179,7 @@ namespace ReaderLibrary
         #endregion
 
         #region Accelerometer Parsing
+        
 
         // Get the raw ADC value
         public int GetRawAccel(string channel)

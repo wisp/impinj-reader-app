@@ -39,12 +39,12 @@ namespace WISPDemo
 
         public override string BuildStringToLog(Object myTagObject)
         {
-
+            
             if (!(myTagObject is MyTag))
                 return "";
 
             MyTag t = (MyTag)myTagObject;
-
+            
             string toWrite = "";
 
             if (IsOptionEnabled("Time"))
